@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KajolaEduPortal</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #searchBox {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    #results {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 10px;
+    }
+
+    .school {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .school a {
+        display: block;
+        margin-top: 10px;
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>KajolaEduPortal</h1>
+    </header>
+
+    <input type="text" id="searchBox" placeholder="Search schools in Kajola...">
+    <div id="results"></div>
+
+    <footer>
+        Powered by Own Trained Digital
+    </footer>
+
+    <script>
+        const schools = [
+            { 
+                name: "Muslim Nursery and Primary School", 
+                description: "Muslim Nursery and Primary School provides a foundation in both academic and Islamic education.", 
+                url: "http://muslimnurseryprimary.edu" 
+            },
+            { 
+                name: "Okeho Iganna Grammar School", 
+                description: "Okeho Iganna Grammar School is known for its strong emphasis on academic excellence and character development.", 
+                url: "http://okehoigannagrammar.edu" 
+            },
+            { 
+                name: "School of Science, Okeho", 
+                description: "School of Science, Okeho offers advanced courses in scientific subjects to prepare students for technological careers.", 
+                url: "http://schoolofscienceokeho.edu" 
+            },
+            
+             { 
+                name: "Baptist High School, Okeho", 
+                description: "Baptist High School in Okeho is a reputable educational institution that has been serving the community for many years. Known for its commitment to academic excellence and moral discipline, the school offers a robust curriculum that encompasses both the sciences and the humanities. Baptist High School emphasizes a holistic approach to education, aiming to develop well-rounded students who are prepared for the challenges of the future.", 
+                url: "http://..." 
+            },
+              { 
+                name: "Ansaruldeen High School, Okeho", 
+                description: "Ansaruldeen High School, Okeho is a prominent educational institution recognized for its dedication to fostering academic excellence and character development in its students. The school prides itself on a comprehensive educational program that combines rigorous academic standards with a rich array of extracurricular activities.", 
+                url: "http://..." 
+            },
+            
+              { 
+                name: "Awoyemi Commercial High School, Okeho.", 
+                description: "Awoyemi Commercial High School, Okeho, is a well-established secondary school known for its commitment to providing a comprehensive education to young learners in the community. Despite its name, the school offers a broad curriculum that includes science, art, and commercial subjects, catering to a diverse student body with various interests and career aspirations.", 
+                url: "http://...." 
+            },
+            
+            { 
+                name: "Ismog Community High School, Okeho", 
+                description: "Ismog Community High School, Okeho, is a dynamic secondary school deeply rooted in the community of Okeho, dedicated to delivering a balanced and enriching education. The school offers a broad curriculum that spans the sciences, arts, and commercial subjects, catering to a diverse range of student interests and ambitions. With a strong emphasis on community values and academic excellence, Ismog Community High School provides a supportive learning environment, encouraging students to achieve their best through both traditional teaching methods and innovative educational practices.", 
+                url: "http:....." 
+            },
+            
+               { 
+                name: "Onjo High School, Okeho", 
+                description: "Onjo High School, Okeho, proudly named after the esteemed title of the local monarch, the Onjo of Okeho, stands as a beacon of tradition and educational excellence in the community. This school is dedicated to providing a well-rounded education that integrates cultural heritage with contemporary learning standards across a variety of academic disciplines including sciences, arts, and social studies. Onjo High School emphasizes the importance of respecting and understanding local traditions while fostering an environment that encourages critical thinking and global awareness.", 
+                url: "http://..." 
+            },
+            
+             { 
+                name: "Al-balagh Model College, Okeho", 
+                description: "distinguished institution known for integrating rigorous academic programs with Islamic teachings, providing students with a comprehensive educational experience that balances secular knowledge and spiritual growth. The college offers a diverse curriculum that includes the arts, sciences, technology, and dedicated Islamic studies, fostering a well-rounded development for students in a supportive and inclusive environment.", 
+                url: "http://....." 
+            },
+            // Add more schools here as needed
+        ];
+
+        document.getElementById('searchBox').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const results = schools.filter(school => 
+                school.name.toLowerCase().includes(searchTerm) ||
+                school.description.toLowerCase().includes(searchTerm));
+            
+            displayResults(results);
+        });
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+            if (results.length) {
+                results.forEach(school => {
+                    const elem = document.createElement('div');
+                    elem.className = 'school';
+                    elem.innerHTML = `<strong>${school.name}</strong><p>${school.description}</p><a href="${school.url}" target="_blank">Visit Website</a>`;
+                    resultsDiv.appendChild(elem);
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>No results found.</p>'; // Display when no results
+            }
+        }
+    </script>
+</body>
+</html>
